@@ -9,7 +9,7 @@ import gensim
 import numpy as np
 import scipy.sparse
 from sklearn import feature_extraction
-from sklearn.externals import joblib
+import joblib
 
 # General parameters
 CORPUSCHUNKS = '/datastore/avcrane1/Riddle/riddleallchunks1000word.txt'

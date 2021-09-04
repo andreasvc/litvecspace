@@ -4,4 +4,5 @@ matplotlib
 pandas
 seaborn
 scikit-learn
-gensim
+joblib
+gensim==3.8.3
