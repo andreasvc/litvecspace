@@ -10,6 +10,7 @@ import subprocess
 from collections import OrderedDict
 import matplotlib
 matplotlib.use('AGG')
+import matplotlib.pyplot as plt
 # import matplotlib.cm as cm
 import pandas as pd
 import gensim
@@ -105,9 +106,11 @@ def getpredictions(feat):
 	result = MODELS['d2v'].predict(feat['d2v'])
 	series = pd.Series(result, name='d2v')
 	summary = series.describe().to_string()
+	_fig, ax1 = plt.subplots(figsize=(5, 1))
 	boxplot = b64fig(series.plot.box(
-			xlim=(0.5, 7.99), figsize=(5, 1), vert=False, widths=0.7))
-	histplot = b64fig(series.plot.hist(xlim=(0.5, 7.99), figsize=(5, 2)))
+			xlim=(0.5, 7.99), vert=False, widths=0.7, ax=ax1))
+	_fig, ax2 = plt.subplots(figsize=(5, 2))
+	histplot = b64fig(series.plot.hist(xlim=(0.5, 7.99), ax=ax2))
 	return result, summary, boxplot, histplot
 
 
