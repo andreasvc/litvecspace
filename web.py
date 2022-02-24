@@ -86,9 +86,10 @@ def chunkize(text, n, label='chunk'):
 		yield name, '\n'.join(tmp)
 
 
-def extractfeatures(chunks):
+def extractfeatures(chunks, seed=0):
 	docs = [gensim.models.doc2vec.TaggedDocument(chunk.split(), [name])
 			for name, chunk in chunks]
+	D2V.random.seed(seed)
 	result = OrderedDict()
 	result['d2v'] = [D2V.infer_vector(doc.words) for doc in docs]
 	return result
